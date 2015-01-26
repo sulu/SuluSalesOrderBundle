@@ -164,6 +164,7 @@ define([
                     if (!!data.id) {
                         this.sandbox.emit('sulu.salesorder.order.saved', model);
                     } else {
+                        this.sandbox.emit('sulu.content.saved');
                         this.sandbox.emit('sulu.router.navigate', 'sales/orders/edit:' + model.id + '/overview');
                     }
                 }.bind(this),
