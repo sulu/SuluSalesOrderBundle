@@ -26,6 +26,7 @@ use Sulu\Component\Security\Authentication\UserRepositoryInterface;
 use Sulu\Component\Persistence\RelationTrait;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class CartManager extends BaseSalesManager
 {
@@ -418,6 +419,9 @@ class CartManager extends BaseSalesManager
         if ($account && $account->getResponsiblePerson()) {
             $cart->setResponsibleContact($account->getResponsiblePerson());
         }
+
+        // set to current date
+        $cart->setOrderDate(new \DateTime());
 
         $addressSource = $contact;
         if ($account) {
